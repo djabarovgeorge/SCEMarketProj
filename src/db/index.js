@@ -32,9 +32,7 @@ function request(sqlrequest, callback){
           } else {
             console.log(`${rowCount} row(s) returned`);
             connection.close();
-            // return callback(rows);
-          }
-        }
+        }}
     );
     _rows = [];
     request.on("row", columns => {
