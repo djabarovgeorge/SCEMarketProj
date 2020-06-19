@@ -25,7 +25,6 @@ function request(sqlrequest, callback){
     // If no error, then good to proceed.
     console.log("Connected");
     // connection.on('debug', function (err) { console.log('debug:', err); });
-
     request = new Request(sqlrequest, (err, rowCount,rows) => {
           if (err) {
             console.error(err.message);
@@ -37,7 +36,6 @@ function request(sqlrequest, callback){
           }
         }
     );
-
     _rows = [];
     request.on("row", columns => {
       var _item = {};
@@ -47,12 +45,10 @@ function request(sqlrequest, callback){
       }
       _rows.push(_item);
     });
-
     // We return the set of rows after the query is complete, instead of returing row by row
     request.on("doneInProc", (rowCount, more, rows) => {
       callback(_rows);
     });
-
     connection.execSql(request);
   });
 }
